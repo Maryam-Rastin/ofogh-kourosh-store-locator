@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "webjs dev",
     "start": "webjs start",
-    "check": "webjs check"
+    "check": "webjs check",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "engines": {
     "node": ">=24"
@@ -18,7 +19,8 @@
     "leaflet": "1.9.4"
   },
   "devDependencies": {
+    "@types/leaflet": "1.9.22",
     "@webjsdev/cli": "0.10.57",
-    "@types/leaflet": "1.9.22"
+    "esbuild": "^0.28.2"
   }
 }

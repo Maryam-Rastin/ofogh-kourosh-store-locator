@@ -2,7 +2,7 @@
 
 A responsive store locator built with WebJs, TypeScript, and Leaflet that allows users to search, filter, and explore Ofogh Kourosh store locations through an interactive map.
 
-Live demo: [Add your deployed project URL here]
+Live demo: https://maryam-rastin.github.io/ofogh-kourosh-store-locator/
 
 ## Overview
 
@@ -70,7 +70,9 @@ The project demonstrates modern frontend development practices including compone
 
 ### Deployment
 
-* GitHub
+* GitHub Actions
+* GitHub Pages
+* esbuild (static bundle for Pages)
 
 ## Screenshots
 
@@ -116,29 +118,37 @@ This verifies the project's TypeScript code without generating output files.
 
 ## Build for Production
 
-Create a production build using the build command configured in the project:
+WebJs runs without a build step (`npm start` serves the app directly), but GitHub Pages can only host static files. The `build:pages` script creates a static copy of the site in `dist/`:
 
 ```bash
-npm run build
+npm run build:pages
 ```
 
-The generated production output can then be deployed using the hosting platform or deployment workflow configured for the project.
+It starts the WebJs server, saves the server-rendered HTML, bundles the browser code (component, WebJs core and Leaflet) with esbuild, and rewrites all URLs to be relative so the site works from the `/ofogh-kourosh-store-locator/` subpath.
+
+To preview the result locally, serve the `dist/` folder with any static server, for example:
+
+```bash
+npx serve dist
+```
 
 ## Deployment
 
-This project is designed to be hosted as a web application through a compatible deployment platform.
+The site is deployed to **GitHub Pages** automatically by the workflow in `.github/workflows/deploy-pages.yml`. On every push to `master` it installs dependencies, runs `npm run check`, builds the static site with `npm run build:pages`, and publishes `dist/`.
 
-Before deployment, make sure the production build completes successfully:
+One-time setup: in the repository go to **Settings → Pages** and set **Source** to **GitHub Actions**.
 
-```bash
-npm run build
-```
+The site will then be available at:
+
+https://maryam-rastin.github.io/ofogh-kourosh-store-locator/
 
 ## Project Structure
 
 ```text
 ofogh-kourosh-store-locator/
-├── .github/workflows/     # GitHub Actions workflow(s)
+├── .github/workflows/
+│   ├── ci.yml             # Type check on every push / PR
+│   └── deploy-pages.yml   # Build and deploy to GitHub Pages
 ├── .webjs/                # WebJs framework configuration/generated files
 ├── app/
 │   ├── layout.ts          # Global layout and metadata
@@ -150,6 +160,8 @@ ofogh-kourosh-store-locator/
 ├── lib/                   # Helpers and assets (e.g. Screenshot.png)
 ├── public/
 │   └── app.css            # Global styles and responsive design
+├── scripts/
+│   └── build-pages.mjs    # Static build for GitHub Pages
 ├── .gitignore
 ├── .nvmrc                 # Node.js version used by the project
 ├── INSTALL.md             # Detailed installation notes
