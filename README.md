@@ -138,25 +138,26 @@ npm run build
 
 ```text
 ofogh-kourosh-store-locator/
-
+├── .github/workflows/     # GitHub Actions workflow(s)
+├── .webjs/                # WebJs framework configuration/generated files
 ├── app/
-│   ├── layout.ts              # Global layout and metadata
-│   └── page.ts                # Main application page
-│
+│   ├── layout.ts          # Global layout and metadata
+│   └── page.ts            # Main application page
 ├── components/
-│   └── store-map.ts           # Store locator and Leaflet map component
-│
+│   └── store-map.ts       # Store locator and Leaflet map component
 ├── data/
-│   └── stores.ts              # Store data and TypeScript types
-│
+│   └── stores.ts          # Store data and TypeScript types
+├── lib/                   # Helpers and assets (e.g. Screenshot.png)
 ├── public/
-│   └── app.css                # Global styles and responsive design
-│
-├── package.json               # Project configuration and dependencies
-├── package-lock.json          # Dependency lock file
-├── tsconfig.json              # TypeScript configuration
-├── .gitignore                 # Git ignored files
-└── README.md                  # Project documentation
+│   └── app.css            # Global styles and responsive design
+├── .gitignore
+├── .nvmrc                 # Node.js version used by the project
+├── INSTALL.md             # Detailed installation notes
+├── LICENSE                # MIT License
+├── README.md              # Project documentation
+├── package.json
+├── package-lock.json
+└── tsconfig.json          # TypeScript configuration
 ```
 
 ## Learning Objectives
